@@ -1,1 +1,11 @@
-hrllp
+Since Linux uses the inotify package to observe filesystem events, individual files or directories.
+React / Angular hot-reloads and recompiles files on save it needs to keep track of all project's files. Increasing the inotify watch limit should hide the warning messages.
+
+# insert the new value into the system config
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
+# check that the new value was applied
+cat /proc/sys/fs/inotify/max_user_watches
+
+# config variable name (not runnable)
+fs.inotify.max_user_watches=524288
