@@ -13,3 +13,19 @@ fs.inotify.max_user_watches=524288
 
 kill a localhost process in ubantu
 sudo kill -9 $(sudo lsof -t -i:port_number)
+
+
+when should the axios interceptors be ejected 
+Eject interceptor
+axios.interceptors.response.eject(interceptor); <---- What does this do
+
+Internally, interceptors.response is an array of interceptors, the method axios.interceptors.response.use return the id of the new interceptor. Calling eject passing the id of the interceptor will set the corresponding item in the array to null, and the interceptor has no effect anymore.
+
+When we receive the response code 401, we use the interceptor to send another request to get the token. To avoid the infinity loop if the latter also receives the response code 401, we eject the interceptor in this case.
+
+Resend original request
+return axios(error.response.config); <--- what does this do
+
+After receiving the token, we want to resend the original request, its configuration is stored in error.response.config according to the response schema
+
+To use the function, call it before sending the request. (People talk about it in the thread of the accepted answer.)
