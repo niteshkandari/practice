@@ -29,3 +29,60 @@ return axios(error.response.config); <--- what does this do
 After receiving the token, we want to resend the original request, its configuration is stored in error.response.config according to the response schema
 
 To use the function, call it before sending the request. (People talk about it in the thread of the accepted answer.)
+
+css toaster ---> 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toaster</title>
+
+   <style>
+        .toast {
+            width: 256px;
+            height: 48px;
+            margin: 30px auto;
+            background: #ffffff;
+            border-radius: 6px;
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+        }
+
+        .close {
+            width: 6px;
+            height: 100%;
+            border-radius: 6px 0 0 6px;
+            cursor: pointer;
+            background: #00b5fd;
+            transition: width 300ms;
+            background-repeat: no-repeat;
+            background-size: 12px;
+            background-position: center;
+        }
+
+        .message {
+            flex-grow: 1;
+            padding: 12px;
+        }
+
+        .toast:hover > .close {
+            width: 36px;
+            background-image: url('./add.png');
+        }
+    </style>
+</head>
+
+<body>
+    <div class="toast">
+        <div class="close">
+        </div>
+        <div class="message">successfull</div>
+    </div>
+</body>
+
+</html>
+
