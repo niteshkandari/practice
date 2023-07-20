@@ -428,3 +428,20 @@ function Component() {
   
   return <div ref={ref}>Ref element</div>
 }
+
+//focus lossing err, cursor will stay in first character
+==> fix
+             <textarea
+                      multiline={true}
+                      rows={6}
+                      style={{ resize: 'none', padding: '5px', borderRadius: '8px', border: '1px solid lightgray' }}
+                      value={remark}
+                      onChange={e => setRemark(e.target.value)}
+                      type="text"
+                      autoFocus
+                      placeholder={allowdProps.INPUT.field_name}
+                      ref={(ref) => ref && ref.focus()}
+                      onFocus={(e) =>
+                        e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)
+                      }
+                    />
